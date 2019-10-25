@@ -23,8 +23,7 @@ const kobitonServerConfig = {
 
 let driver
 
-// const filePath = `../app/${process.env.SOURCE_APP_DIR}`
-const filePath = `../AwesomeProject/ios/Prdfile`
+const filePath = `../app/${process.env.SOURCE_APP_DIR}`
 const stats = fs.statSync(filePath);
 const fileName = path.parse(filePath).base
   const inputBody = {
