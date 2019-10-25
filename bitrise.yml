@@ -1,0 +1,48 @@
+format_version: "8"
+default_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git
+
+app:
+    envs:
+    - SOURCE_APP_DIR: ApiDemos-debug.apk
+
+workflows:
+#   test:
+#     before_run:
+#     - build_app
+#     after_run:
+#     - run_test
+
+  run_test: 
+    envs: 
+        - SOURCE_JAVASCRIPT_TEST: ./javascript
+    steps:
+    - change-workdir:
+        title: Change directory to a temporary directory
+        is_always_run: true
+        inputs:
+        - path: $SOURCE_JAVASCRIPT_TEST
+    - script@1.1.3: 
+        inputs:
+        - content: |
+            #!/bin/bash
+            set -ex
+            echo "$BITRISE_SOURCE_DIR"
+            npm install
+            npm run android-app-test
+
+#   build_app:
+#     envs: 
+#         - SOURCE_NATIVE_APP: ./AwesomeProject
+#     steps:
+#     - change-workdir:
+#         title: Change directory to a temporary directory
+#         is_always_run: true
+#         inputs:
+#         - path: $SOURCE_NATIVE_APP
+#     - script@1.1.3: 
+#         inputs:
+#         - content: |
+#             #!/bin/bash
+#             echo "Built app at ${SOURCE_NATIVE_APP}"
+#             npm install
+#             react-native run-ios
