@@ -102,7 +102,7 @@ describe('Android App sample',() => {
     const app_id = createAppVersion.appId
 
 
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await new Promise((resolve) => setTimeout(resolve, 5000))
 
     driver = wd.promiseChainRemote(kobitonServerConfig)
 
